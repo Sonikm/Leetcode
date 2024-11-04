@@ -3,7 +3,24 @@
  * @return {number}
  */
 var majorityElement = function(nums) {
-    let n = nums.length;   
+    let n = nums.length; 
+     
+     let ans =0;
+     let freq=0;
+
+     for(let i=0; i<n;i++){
+        if(freq == 0) ans = nums[i];
+        if(ans == nums[i]) freq++;
+        else {
+            freq--;
+        }
+     }
+
+     return ans;
+
+    /*  
+
+    || n(login)
    // Sorting
    nums.sort((a,b) => a-b);
 
@@ -15,7 +32,6 @@ var majorityElement = function(nums) {
     if(nums[i] == nums[i-1]){
          freq++;
     }
-   
     else {
         freq = 1;
         ans = nums[i];
@@ -26,4 +42,6 @@ var majorityElement = function(nums) {
    }
 
     return ans;
+
+    */
 };
