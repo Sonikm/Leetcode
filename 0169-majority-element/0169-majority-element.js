@@ -8,6 +8,7 @@ var majorityElement = function(nums) {
      let ans =0;
      let freq=0;
 
+    // O(n)
      for(let i=0; i<n;i++){
         if(freq == 0) ans = nums[i];
         if(ans == nums[i]) freq++;
@@ -20,7 +21,7 @@ var majorityElement = function(nums) {
 
     /*  
 
-    || n(login)
+    || O(nlogn)
    // Sorting
    nums.sort((a,b) => a-b);
 
