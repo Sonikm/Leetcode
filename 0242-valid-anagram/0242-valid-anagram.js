@@ -12,8 +12,8 @@ var isAnagram = function(s, t) {
     //More optimized
     if(s.length !== t.length) return false;
 
-    let obj1={}
-    let obj2={}
+    let obj1 = {};
+    let obj2 = {};
 
     for(let i in s){
         obj1[s[i]] = (obj1[s[i]] || 0) + 1;
