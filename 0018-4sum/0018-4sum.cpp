@@ -16,7 +16,7 @@ public:
           int k= j+1, l=n-1;
           while(k < l && l < n){
           int a = nums[i], b = nums[j], c = nums[k] , d = nums[l];
-          int sum = a+b+c+d;
+          long long sum = (long long)a + (long long)b + (long long)c + (long long)d;
 
           if(sum > target) l--;
           else if(sum < target) k++;
