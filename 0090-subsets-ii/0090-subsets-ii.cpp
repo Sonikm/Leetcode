@@ -24,6 +24,7 @@ public:
         vector<vector<int>> allSubsets;
         set<vector<int>> s;
         vector<int> ans;
+        sort(nums.begin(), nums.end());
         getAllSubsets(nums, ans, 0, allSubsets, s);
 
         return allSubsets;
