@@ -1,59 +1,45 @@
 class Solution {
 public:
+   bool isSafe(vector<vector<char>>& board, int row, int col, char digit){
+    for(int i=0; i<9; i++){
+        // horizontal ==> cols
+        if(board[row][i] == digit) return false;
 
-    bool isSafe(vector<vector<char>>& board, int row, int col, char digit){
-        // horizontal
-        for(int j=0; j<9; j++){
-            if(board[row][j] == digit) return false;
-        }
-        // vertical
-        for(int i=0; i<9; i++){
-            if(board[i][col] == digit) return false;
-        }
-        // cell 3*3
-        int srow = (row/3)*3;
-        int scol = (col/3)*3;
-        for(int i=srow; i<=srow+2; i++){
-             for(int j=scol; j<=scol+2; j++){
-                if(board[i][j] == digit) return false;
-              }
-        }
+        // vertical ==> rows
+        if(board[i][col] == digit) return false;
 
-        return true;
+        if(board[3*(row/3)+i/3][3*(col/3)+i%3] == digit) return false;
     }
-    
-    bool helper(vector<vector<char>>& board, int row, int col){
-        if(row == 9){
-            return true;
-        }
 
-        int nextRow = row;
-        int nextCol = col+1;
-
-        if(nextCol == 9) {
-            nextRow = nextRow+1;
-            nextCol = 0;
-        }
-
-        if(board[row][col] != '.'){
-           return helper(board, nextRow, nextCol); 
-        }
-
-        // Place the digit
-        for(char dig='1'; dig<='9'; dig++){
-            if(isSafe(board, row, col, dig)){
-                board[row][col] = dig;
-                if(helper(board, nextRow, nextCol)){
-                   return true;
+    return true;
+   }
+   
+    bool solve(vector<vector<char>>& board){
+      for(int row=0; row<9; row++){
+        for(int col=0; col<9; col++){
+            // check empty
+            if(board[row][col] == '.'){
+                for(char dig='1'; dig<='9'; dig++){
+                   if(isSafe(board, row, col, dig)){
+                    board[row][col] = dig;
+                    bool aageSolutionPossible = solve(board);
+                    if(aageSolutionPossible) {
+                        return true;
+                    }else {
+                        // backtracking
+                         board[row][col] = '.';
+                    }
+                   }
                 }
-                 board[row][col] = '.'; // backtracking means remove that element
+                return false;
             }
         }
+      }
 
-        return false;
+      return true;
     }
 
     void solveSudoku(vector<vector<char>>& board) {
-       helper(board, 0, 0); 
+      solve(board);  
     }
 };
