@@ -6,15 +6,9 @@ public:
 
         for(int r=0; r<n; r++){
             for(int c=n-1; c>=0; c--){
-                temp[c][n-r-1] = matrix[r][c];
+                matrix[c][n-r-1] = temp[r][c];
             }
         }
-
-         for(int r=0; r<n; r++){
-            for(int c=0; c<n; c++){
-                matrix[r][c] = temp[r][c];
-            }
-         }
 
     }
 };
