@@ -3,17 +3,16 @@ public:
     int maxScore(vector<int>& cardPoints, int k) {
         
         int n = cardPoints.size();
-        int l=0, r=n-1;
         int sum = 0;
 
-        while(l<k){
-            sum += cardPoints[l];
-            l++;
+        for(int i=0; i<k; i++){
+            sum += cardPoints[i];
         }
 
         if(k >= n) return sum;
 
         int ans = sum;
+        int l=k-1, r=n-1;
 
         while(l>=0){
             sum = sum - cardPoints[l] + cardPoints[r];
