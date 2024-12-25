@@ -4,6 +4,7 @@ public:
 
         int n = s.size();
         int maxCount = 0;
+        unordered_map<char,int> hash;
        // BRUTE FORCE APPROACH
 
        for(int i=0; i<n; i++){
@@ -11,8 +12,9 @@ public:
         // int currentCount = 0;
         int k2 = k;
         int l=0, r=0;
-        
-        for(int r=0; r<n; r++){
+
+        if(hash[currentChar] != 1){
+            for(int r=0; r<n; r++){
 
             if(s[r] != currentChar) k2--;
             if(k2  < 0){
@@ -22,7 +24,11 @@ public:
             // currentCount++;
             maxCount = max(maxCount, r-l+1);
         }
-       }
+     }
+
+    hash[currentChar] = 1;
+
+  }
 
        return maxCount;
     }
