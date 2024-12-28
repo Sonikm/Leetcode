@@ -18,8 +18,8 @@ public:
        int resLen = INT_MAX;
        int l = 0;
 
-      for(char r : s){
-        char c = r;
+     for (int r = 0; r < n; r++) {
+        char c = s[r];
         window[c]++;
 
         if(countT.find(c) != countT.end() && window[c] == countT[c]){
